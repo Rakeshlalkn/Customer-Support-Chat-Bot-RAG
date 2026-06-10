@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: cs-bot-backend
+    restart: unless-stopped
+    environment:
+      # --- Pick exactly one provider (or leave both blank to run in demo mode) ---
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+      # --- Storage ---
+      CHROMA_PERSIST_DIR: /data/chroma
+      DATA_DIR: /app/data
+    volumes:
+      # Persist ChromaDB + uploaded files across restarts
+      - cs-bot-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  frontend:
+    build: ./frontend
+    container_name: cs-bot-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+
+volumes:
+  cs-bot-data:

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support AI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="logo">S</span>
+          <div>
+            <div class="brand-name">Support AI</div>
+            <div class="brand-sub">RAG chatbot</div>
+          </div>
+        </div>
+
+        <div class="kb-card">
+          <div class="kb-title">Knowledge base</div>
+          <div class="kb-stat" id="kb-count">loading…</div>
+          <div class="kb-meta" id="kb-provider">provider: —</div>
+          <div class="kb-meta" id="kb-model">model: —</div>
+        </div>
+
+        <div class="kb-actions">
+          <label class="btn-secondary" for="file-input">
+            Upload document
+            <input id="file-input" type="file" hidden accept=".txt,.md,.pdf,.docx" />
+          </label>
+          <button class="btn-ghost" id="btn-seed">Load sample KB</button>
+          <button class="btn-ghost danger" id="btn-reset">Reset KB</button>
+        </div>
+
+        <div class="status-pill" id="status-pill">connecting…</div>
+
+        <div class="footer-note">fastapi · langchain · chromadb</div>
+      </aside>
+
+      <main class="chat">
+        <header class="chat-header">
+          <div>
+            <div class="chat-title">How can we help?</div>
+            <div class="chat-sub">Ask about refunds, shipping, accounts, billing.</div>
+          </div>
+          <button class="btn-ghost" id="btn-clear">New chat</button>
+        </header>
+
+        <section class="messages" id="messages">
+          <div class="msg bot">
+            <div class="avatar">AI</div>
+            <div class="bubble">
+              Hi! Ask me anything about your account or our policies. I'll cite the source for every answer.
+            </div>
+          </div>
+        </section>
+
+        <form class="composer" id="composer" autocomplete="off">
+          <textarea id="input" rows="1" placeholder="Type your question…" required></textarea>
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
