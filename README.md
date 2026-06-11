@@ -51,16 +51,3 @@ python -m http.server 8080
 ```
 
 You'll need to point `app.js` at `http://localhost:8000` directly (or just keep using docker).
-
-## Adding your own docs
-
-Either drop `.md`/`.txt` files into `backend/data/` and re-run `seed_on_startup.py`, or hit `/ingest/file` from the UI. For PDFs/DOCX you need the file upload route — the seed script only handles text.
-
-## TODO (things I'd do next)
-
-- proper structured logging (using `print()` everywhere is a smell)
-- chat history per session_id (currently stateless)
-- rate limiting on /chat
-- a real eval set + automated quality checks
-- swap the demo LLM fallback for something like Ollama so it works offline for real
-- websocket instead of HTTP for streaming tokens
