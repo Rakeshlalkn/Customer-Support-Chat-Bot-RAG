@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     environment:
       # --- Pick exactly one provider (or leave both blank to run in demo mode) ---
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
-      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
       # --- Storage ---
       CHROMA_PERSIST_DIR: /data/chroma
